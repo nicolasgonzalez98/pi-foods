@@ -59,7 +59,7 @@ let getAllInfo = async () => {
     }
 }
 
-getApiInfoByName =  (n) => {
+getApiInfoByName = (n) => {
     // try {
     //     let apiData = await getApiInfo()
     //     let resultados = apiData.filter(e => e.name.toLowerCase().includes(n.toLowerCase()))
@@ -85,6 +85,19 @@ getDbInfoByName = async(n) => {
     }
 }
 
+getAllInfoByName = async(n) => {
+    try {
+        let dataApi = await getApiInfoByName(n)
+        let dataDB = await getDbInfoByName(n)
+
+        let total = dataApi.concat(dataDB)
+        return total
+
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 
 
 router.get('/', async(req, res, next) => {
@@ -92,7 +105,7 @@ router.get('/', async(req, res, next) => {
     try {
         let info
         if(name){
-            info = await getApiInfoByName(name)
+            info = await getAllInfoByName(name)
             if(info.length === 0){
                 info = {error:'No hay recetas'}
             }
