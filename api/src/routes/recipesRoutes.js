@@ -15,6 +15,7 @@ let getApiInfo = async () => {
             return {
                 id:e.id,
                 name:e.title,
+                lowFodmap: e.lowFodmap,
                 vegetarian:e.vegetarian,
                 vegan:e.vegan,
                 glutenFree:e.glutenFree,
@@ -22,7 +23,6 @@ let getApiInfo = async () => {
                 healthScore: e.healthScore,
                 summary: e.summary,
                 diet:e.diets,
-                score:e.weightWatcherSmartPoints,
                 steps: (e.analyzedInstructions[0] && e.analyzedInstructions[0].steps?e.analyzedInstructions[0].steps.map(s => s.step).join(" \n"):'')
             }
         })
@@ -36,7 +36,13 @@ let getApiInfo = async () => {
 let getDbInfo = async () => {
     try {
         let data = await Recipe.findAll({
-            include:Diet
+            include:[{
+                model: Diet,
+                attributes: ['name'],
+                through: {
+                    attributes: []
+                }
+            }]
         })
 
         return data
@@ -79,7 +85,8 @@ getApiInfoByName = (n) => {
 getDbInfoByName = async(n) => {
     try{
         let dataDb = await getDbInfo()
-        return dataDb.filter(e => e.name.includes(n))
+        console.log(dataDb)
+        return dataDb.filter(e => e.name.toLowerCase().includes(n.toLowerCase()))
     }catch(err){
         console.log(err)
     }
@@ -98,6 +105,34 @@ getAllInfoByName = async(n) => {
     }
 }
 
+let getApiIdInfo = async (id) => {
+    try {
+        let e = (await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)).data
+        
+
+        let data = {
+                id:e.id,
+                name:e.title,
+                lowFodmap: e.lowFodmap,
+                vegetarian:e.vegetarian,
+                vegan:e.vegan,
+                glutenFree:e.glutenFree,
+                dairyFree:e.dairyFree,
+                healthScore: e.healthScore,
+                summary: e.summary,
+                diet:e.diets,
+                steps: (e.analyzedInstructions[0] && e.analyzedInstructions[0].steps?e.analyzedInstructions[0].steps.map(s => s.step).join(" \n"):'')
+            }
+        
+        
+
+        return data
+    } catch (err) {
+        
+        return {error:'Receta inexistente'}
+    }
+}
+
 
 
 router.get('/', async(req, res, next) => {
@@ -107,7 +142,7 @@ router.get('/', async(req, res, next) => {
         if(name){
             info = await getAllInfoByName(name)
             if(info.length === 0){
-                info = {error:'No hay recetas'}
+                info = {error:'No hay recetas con ese nombre'}
             }
         }else{
             info = await getAllInfo();
@@ -116,6 +151,38 @@ router.get('/', async(req, res, next) => {
         return res.json(info)
     } catch (error) {
         next(error)
+    }
+})
+
+router.get('/:id', async(req, res) => {
+    const { id } = req.params;
+
+    try {
+        let recipe;
+        if(id.length > 12){
+            recipe = await Recipe.findByPk(id, {
+                include:[{
+                    model: Diet,
+                    attributes: ['name'],
+                    through: {
+                        attributes: []
+                    }
+                }]
+            })
+
+            if(recipe){
+                res.json(recipe)
+            }else{
+                res.json({error:'No se encontro la receta'})
+            }
+        }else{
+            recipe = await getApiIdInfo(id)
+            if(recipe){
+                return res.json(recipe)
+            }
+        }
+    } catch (err) {
+        res.json({error:'No existe la receta'})
     }
 })
 

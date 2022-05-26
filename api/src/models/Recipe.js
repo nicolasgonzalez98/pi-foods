@@ -18,9 +18,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull:false
     },
-    score: {
-      type: DataTypes.INTEGER
-    },
     healthScore: {
       type: DataTypes.INTEGER,
       validate: {
@@ -30,6 +27,11 @@ module.exports = (sequelize) => {
     },
     steps: {
       type: DataTypes.STRING
+    },
+    createdInDb: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     }
   });
 };
