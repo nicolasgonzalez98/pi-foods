@@ -5,6 +5,8 @@ require('dotenv').config();
 const axios = require("axios")
 const {API_KEY, API_KEY2} = process.env;
 
+
+
 const router = Router();
 
 let getApiInfo = async () => {
@@ -12,6 +14,13 @@ let getApiInfo = async () => {
         let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY2}&addRecipeInformation=true&number=100`)
         const { results } = apiData.data
         let data = results.map(e => {
+            let dietas = e.diets
+            if(e.vegetarian && !dietas.includes('vegetarian'))dietas.push('vegetarian');
+            if(e.vegan && !dietas.includes('vegan'))dietas.push('vegan');
+            if(e.lowFodmap && !dietas.includes('low fodmap'))dietas.push('low fodmap');
+            if(e.glutenFree && !dietas.includes('gluten free'))dietas.push('gluten free');
+            if(e.dairyFree && !dietas.includes('dairy free'))dietas.push('dairy free');
+
             return {
                 id:e.id,
                 name:e.title,
@@ -22,7 +31,7 @@ let getApiInfo = async () => {
                 dairyFree:e.dairyFree,
                 healthScore: e.healthScore,
                 summary: e.summary,
-                diet:e.diets,
+                diet:dietas,
                 steps: (e.analyzedInstructions[0] && e.analyzedInstructions[0].steps?e.analyzedInstructions[0].steps.map(s => s.step).join(" \n"):'')
             }
         })

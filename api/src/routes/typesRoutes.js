@@ -12,6 +12,13 @@ let getApiInfo = async () => {
         let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
         const { results } = apiData.data
         let data = results.map(e => {
+            let dietas = e.diets
+            if(e.vegetarian && !dietas.includes('vegetarian'))dietas.push('vegetarian');
+            if(e.vegan && !dietas.includes('vegan'))dietas.push('vegan');
+            if(e.lowFodmap && !dietas.includes('low fodmap'))dietas.push('low fodmap');
+            if(e.glutenFree && !dietas.includes('gluten free'))dietas.push('gluten free');
+            if(e.dairyFree && !dietas.includes('dairy free'))dietas.push('dairy free');
+
             return {
                 id:e.id,
                 name:e.title,
@@ -63,7 +70,7 @@ let getAllInfo = async () => {
 }
 
 router.get('/', async (req, res, next) => {
-    let resultado = ['vegetarian']
+    let resultado = []
     try {
         let datos = await getAllInfo()
         let total = datos.map(e => e.diet)

@@ -7,6 +7,7 @@ const typesRouters = require('./typesRoutes.js')
 
 
 
+
 const router = Router();
 
 // Configurar los routers
