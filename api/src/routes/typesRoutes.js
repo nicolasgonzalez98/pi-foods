@@ -3,13 +3,13 @@ const { Recipe, Diet, Op } = require('../db');
 
 require('dotenv').config();
 const axios = require("axios")
-const {API_KEY, API_KEY2} = process.env;
+const {API_KEY, API_KEY2, API_KEY3} = process.env;
 
 const router = Router();
 
 let getApiInfo = async () => {
     try {
-        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY3}&addRecipeInformation=true&number=100`)
         const { results } = apiData.data
         let data = results.map(e => {
             let dietas = e.diets
@@ -29,7 +29,8 @@ let getApiInfo = async () => {
                 healthScore: e.healthScore,
                 summary: e.summary,
                 diet:e.diets,
-                steps: (e.analyzedInstructions[0] && e.analyzedInstructions[0].steps?e.analyzedInstructions[0].steps.map(s => s.step).join(" \n"):'')
+                steps: (e.analyzedInstructions[0] && e.analyzedInstructions[0].steps?e.analyzedInstructions[0].steps.map(s => s.step).join(" \n"):''),
+                image:e.image
             }
         })
         return data
@@ -74,7 +75,7 @@ router.get('/', async (req, res, next) => {
     try {
         let datos = await getAllInfo()
         let total = datos.map(e => e.diet)
-        console.log(total)
+        
         for(let i =0; i< total.length; i++){
             for(let j=0; j<total.length; j++){
                 if(total[i][j] && !resultado.includes(total[i][j])){
