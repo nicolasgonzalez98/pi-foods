@@ -7,7 +7,9 @@ export default function RecipeCard({id, name, image, type}){
             <Link to={`/${id}`}>
                 <h3>{name}</h3>
             </Link>
-            <h5>{type}</h5>
+            <ul>
+                {type.map(e => (<li>{e}</li>))}
+            </ul>
             <img src={image} alt='foto_receta'></img>
         </div>
     )
