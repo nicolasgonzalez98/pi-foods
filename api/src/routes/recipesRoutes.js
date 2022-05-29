@@ -11,7 +11,7 @@ const router = Router();
 
 let getApiInfo = async () => {
     try {
-        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY2}&addRecipeInformation=true&number=100`)
+        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY3}&addRecipeInformation=true&number=100`)
         const { results } = apiData.data
         let data = results.map(e => {
             let dietas = e.diets
@@ -130,6 +130,7 @@ let getApiIdInfo = async (id) => {
                 healthScore: e.healthScore,
                 summary: e.summary,
                 diet:e.diets,
+                dishTypes:e.dishTypes,
                 steps: (e.analyzedInstructions[0] && e.analyzedInstructions[0].steps?e.analyzedInstructions[0].steps.map(s => s.step).join(" \n"):''),
                 image:e.image
             }
@@ -139,7 +140,7 @@ let getApiIdInfo = async (id) => {
         return data
     } catch (err) {
         
-        return {error:'Receta inexistente'}
+        return {error:'No me pude conectar con el servidor :('}
     }
 }
 

@@ -131,14 +131,14 @@ __Ruta de creación de recetas__: debe contener
 
 El modelo de la base de datos deberá tener las siguientes entidades (Aquellas propiedades marcadas con asterisco deben ser obligatorias):
 
-- [ ] Receta con las siguientes propiedades:
+- [X] Receta con las siguientes propiedades:
   - ID: *
   - Nombre *
   - Resumen del plato *
   - Puntuación
   - Nivel de "comida saludable"
   - Paso a paso
-- [ ] Tipo de dieta con las siguientes propiedades:
+- [X] Tipo de dieta con las siguientes propiedades:
   - ID
   - Nombre
 
@@ -153,7 +153,7 @@ Se debe desarrollar un servidor en Node/Express con las siguientes rutas:
 
 __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y paginados brindados por la API externa, todas estas funcionalidades tienen que implementarlas ustedes.
 
-- [ ] __GET /recipes?name="..."__:
+- [] __GET /recipes?name="..."__:
   - Obtener un listado de las recetas que contengan la palabra ingresada como query parameter
   - Si no existe ninguna receta mostrar un mensaje adecuado
 - [ ] __GET /recipes/{idReceta}__:

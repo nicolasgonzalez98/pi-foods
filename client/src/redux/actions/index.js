@@ -3,8 +3,8 @@ import axios from 'axios'
 export const GET_ALL_RECIPES = 'GET_ALL_RECIPES';
 export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 export const FILTER_BY_DIETS = 'FILTER_BY_DIETS';
-export const FILTER_BY_ORDER = 'FILTER_BY_ORDER';
-export const FILTER_ALPHA_SCORE = 'FILTER_ALPHA_SCORE'
+export const FILTER_ALPHA_SCORE = 'FILTER_ALPHA_SCORE';
+export const GET_RECIPE_BY_ID = 'GET_RECIPE_BY_ID'
 
 
 export function getAllRecipes(){
@@ -35,6 +35,20 @@ export function getAllTypes(){
     }
 }
 
+export function getRecipeById(id){
+    return function(dispatch){
+        return axios.get(`http://localhost:3001/recipes/${id}`)
+        .then(json => {
+            dispatch({
+                type: GET_RECIPE_BY_ID,
+                payload: json
+            })
+        })
+    }
+}
+
+
+
 export function filterByDiets(payload){
     return {
         type: FILTER_BY_DIETS,
@@ -42,12 +56,6 @@ export function filterByDiets(payload){
     }
 }
 
-export function filterByOrder(payload){
-    return {
-        type: FILTER_BY_ORDER,
-        payload
-    }
-}
 
 export function filterAlphaScore(payload){
     return {
