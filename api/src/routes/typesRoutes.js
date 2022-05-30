@@ -9,7 +9,7 @@ const router = Router();
 
 let getApiInfo = async () => {
     try {
-        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY3}&addRecipeInformation=true&number=100`)
+        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
         const { results } = apiData.data
         let data = results.map(e => {
             let dietas = e.diets
@@ -28,7 +28,7 @@ let getApiInfo = async () => {
                 dairyFree:e.dairyFree,
                 healthScore: e.healthScore,
                 summary: e.summary,
-                diet:e.diets,
+                diets:e.diets,
                 steps: (e.analyzedInstructions[0] && e.analyzedInstructions[0].steps?e.analyzedInstructions[0].steps.map(s => s.step).join(" \n"):''),
                 image:e.image
             }
@@ -74,7 +74,7 @@ router.get('/', async (req, res, next) => {
     let resultado = []
     try {
         let datos = await getAllInfo()
-        let total = datos.map(e => e.diet)
+        let total = datos.map(e => e.diets)
         
         for(let i =0; i< total.length; i++){
             for(let j=0; j<total.length; j++){

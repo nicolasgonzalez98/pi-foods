@@ -11,7 +11,7 @@ const router = Router();
 
 let getApiInfo = async () => {
     try {
-        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY3}&addRecipeInformation=true&number=100`)
+        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
         const { results } = apiData.data
         let data = results.map(e => {
             let dietas = e.diets
@@ -31,7 +31,7 @@ let getApiInfo = async () => {
                 dairyFree:e.dairyFree,
                 healthScore: e.healthScore,
                 summary: e.summary,
-                diet:dietas,
+                diets:dietas,
                 steps: (e.analyzedInstructions[0] && e.analyzedInstructions[0].steps?e.analyzedInstructions[0].steps.map(s => s.step).join(" \n"):''),
                 image:e.image
             }
@@ -116,7 +116,7 @@ getAllInfoByName = async(n) => {
 
 let getApiIdInfo = async (id) => {
     try {
-        let e = (await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY3}`)).data
+        let e = (await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)).data
         
 
         let data = {
@@ -129,7 +129,7 @@ let getApiIdInfo = async (id) => {
                 dairyFree:e.dairyFree,
                 healthScore: e.healthScore,
                 summary: e.summary,
-                diet:e.diets,
+                diets:e.diets,
                 dishTypes:e.dishTypes,
                 steps: (e.analyzedInstructions[0] && e.analyzedInstructions[0].steps?e.analyzedInstructions[0].steps.map(s => s.step).join(" \n"):''),
                 image:e.image

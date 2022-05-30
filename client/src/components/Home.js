@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAllRecipes,  getAllTypes, filterByDiets, filterAlphaScore} from '../redux/actions/index';
+import { getAllRecipes,  getAllTypes} from '../redux/actions/index';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
@@ -48,7 +48,7 @@ export function Home(){
 
     return(
         <div>
-            <Link to='/recipe'>Crear Receta</Link>
+            <Link to='/create'><button>Crear Receta</button></Link>
             <h1>CUCINARE</h1>
             
             <button onClick={e => handleClick(e)}>Volver a cargar todos las recetas</button>
@@ -63,7 +63,7 @@ export function Home(){
             />
     
             <div>
-                {currentRecipes?.map(e => <RecipeCard id={e.id}   name={e.name} image={e.image} type={e.diet}/>)}
+                {currentRecipes?.map(e => <RecipeCard key={e.id} id={e.id}   name={e.name} image={e.image} type={e.diets}/>)}
             </div>
             <div>
                 <Paginado 

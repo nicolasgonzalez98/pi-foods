@@ -8,7 +8,7 @@ const {API_KEY, API_KEY2} = process.env;
 const router = Router();
 
 router.post('/', async (req,res) => {
-    let { name, summary, healthScore, steps, image, createdInDb, diets} = req.body;
+    let { name, summary, healthScore,image,steps, createdInDb, diets} = req.body;
 
     if(!name || !summary) return res.status(404).send("Falta enviar datos obligatorios")
     
@@ -17,8 +17,8 @@ router.post('/', async (req,res) => {
             name,
             summary,
             healthScore,
-            steps,
             image,
+            steps,
             createdInDb
         })
 

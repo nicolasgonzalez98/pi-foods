@@ -45,7 +45,7 @@ const rootReducer = (state = initialState, action) => {
         case FILTER_BY_DIETS:
             let all_recipes = state.all_recipes.data;
             const diet_type = action.payload
-            let total  = {data : all_recipes.filter(e => e.diet.includes(diet_type))}
+            let total  = {data : all_recipes.filter(e => e.diets.includes(diet_type))}
 
             return{
                 ...state,

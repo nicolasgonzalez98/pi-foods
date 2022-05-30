@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { filterByDiets, filterAlphaScore } from '../redux/actions/index'
 
 export function FilterSearch({allDiets, setCurrentPage, setOrder, typeOrder, setTypeOrder, order}){

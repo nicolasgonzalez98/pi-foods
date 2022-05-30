@@ -1,10 +1,11 @@
 import axios from 'axios'
 
+
 export const GET_ALL_RECIPES = 'GET_ALL_RECIPES';
 export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 export const FILTER_BY_DIETS = 'FILTER_BY_DIETS';
 export const FILTER_ALPHA_SCORE = 'FILTER_ALPHA_SCORE';
-export const GET_RECIPE_BY_ID = 'GET_RECIPE_BY_ID'
+export const GET_RECIPE_BY_ID = 'GET_RECIPE_BY_ID';
 
 
 export function getAllRecipes(){
@@ -31,7 +32,7 @@ export function getAllTypes(){
                 payload:json
             })
         })
-        .catch(err => console.log(err))
+        
     }
 }
 
@@ -46,6 +47,7 @@ export function getRecipeById(id){
         })
     }
 }
+
 
 
 
