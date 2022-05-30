@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTypes } from '../redux/actions/index';
+import { getAllTypes, postRecipe } from '../redux/actions/index';
 
 export function RecipeCreate(){
 
@@ -76,12 +76,26 @@ export function RecipeCreate(){
             [e.target.name]:e.target.value
           }))
     }
+
+    function handleSubmit(e){
+        e.preventDefault()
+        dispatch(postRecipe(input))
+        setInput({
+            name: '',
+            summary: '',
+            healthScore:0,
+            image: '',
+            steps: '',
+            diets: []
+        })
+        
+    }
     
     return (
         <div>
             <h1>Crea tu propia receta!</h1>
 
-            <form action=''>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label>Name of recipe: </label>
                     <input 

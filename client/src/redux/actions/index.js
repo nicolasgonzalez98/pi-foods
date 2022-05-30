@@ -6,6 +6,7 @@ export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 export const FILTER_BY_DIETS = 'FILTER_BY_DIETS';
 export const FILTER_ALPHA_SCORE = 'FILTER_ALPHA_SCORE';
 export const GET_RECIPE_BY_ID = 'GET_RECIPE_BY_ID';
+export const POST_RECIPE = 'POST_RECIPE';
 
 
 export function getAllRecipes(){
@@ -43,6 +44,17 @@ export function getRecipeById(id){
             dispatch({
                 type: GET_RECIPE_BY_ID,
                 payload: json
+            })
+        })
+    }
+}
+
+export function postRecipe(payload){
+    return function(dispatch){
+        return axios.post('http://localhost:3001/recipe', payload)
+        .then(data => {
+            dispatch({
+                type: POST_RECIPE
             })
         })
     }

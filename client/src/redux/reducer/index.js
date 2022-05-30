@@ -1,5 +1,6 @@
 import {GET_ALL_RECIPES, GET_ALL_TYPES, GET_RECIPE_BY_ID,
-        FILTER_BY_DIETS, FILTER_ALPHA_SCORE} 
+        FILTER_BY_DIETS, FILTER_ALPHA_SCORE,
+        POST_RECIPE} 
 from '../actions/index'
 
 function sortAsc(x, y){
@@ -41,6 +42,10 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 recipe:action.payload.data
+            }
+        case POST_RECIPE:
+            return {
+                ...state
             }
         case FILTER_BY_DIETS:
             let all_recipes = state.all_recipes.data;

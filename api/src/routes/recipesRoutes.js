@@ -11,7 +11,7 @@ const router = Router();
 
 let getApiInfo = async () => {
     try {
-        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY3}&addRecipeInformation=true&number=10`)
         const { results } = apiData.data
         let data = results.map(e => {
             let dietas = e.diets
@@ -46,16 +46,33 @@ let getApiInfo = async () => {
 let getDbInfo = async () => {
     try {
         let data = await Recipe.findAll({
-            include:[{
+            include:{
                 model: Diet,
                 attributes: ['name'],
                 through: {
                     attributes: []
                 }
-            }]
+            }
         })
 
-        return data
+        // for (let i = 0; i<data.length;i++){
+        //     console.log(data[i].dataValues)
+        // recipe.dataValues}
+
+        let response = await data?.map(recipe => {
+            return {id: recipe.dataValues.id,
+                name: recipe.dataValues.name,
+                summary: recipe.dataValues.summary,
+                healthScore: recipe.dataValues.healthScore,
+                image: recipe.dataValues.image,
+                steps: recipe.dataValues.steps,
+                diets: recipe.dataValues.diets?.map(diet => diet.name)}
+            
+        });
+
+        
+
+        return response
     } catch (error) {
         console.log(error)
     }
@@ -116,7 +133,7 @@ getAllInfoByName = async(n) => {
 
 let getApiIdInfo = async (id) => {
     try {
-        let e = (await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)).data
+        let e = (await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY3}`)).data
         
 
         let data = {

@@ -9,7 +9,7 @@ const router = Router();
 
 let getApiInfo = async () => {
     try {
-        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY3}&addRecipeInformation=true&number=100`)
         const { results } = apiData.data
         let data = results.map(e => {
             let dietas = e.diets
@@ -52,7 +52,20 @@ let getDbInfo = async () => {
             }]
         })
 
-        return data
+        let response = await data?.map(recipe => {
+            return {id: recipe.dataValues.id,
+                name: recipe.dataValues.name,
+                summary: recipe.dataValues.summary,
+                healthScore: recipe.dataValues.healthScore,
+                image: recipe.dataValues.image,
+                steps: recipe.dataValues.steps,
+                diets: recipe.dataValues.diets?.map(diet => diet.name)}
+            
+        });
+
+        
+
+        return response
     } catch (error) {
         console.log(error)
     }
@@ -62,8 +75,9 @@ let getAllInfo = async () => {
     try {
         let dataApi = await getApiInfo()
         let dataDB = await getDbInfo()
-
+        //console.log(dataDB)
         let total = dataApi.concat(dataDB)
+        //console.log(total)
         return total
     } catch (error) {
         console.log(error)

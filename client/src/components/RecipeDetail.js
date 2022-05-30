@@ -25,6 +25,7 @@ export default function RecipeDetail(){
             </ul>
 
             <ul>
+                Diets:
                 {recipe.diet?.map(e => <li>{e}</li>)}
             </ul>
 

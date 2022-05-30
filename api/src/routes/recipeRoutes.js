@@ -12,6 +12,8 @@ router.post('/', async (req,res) => {
 
     if(!name || !summary) return res.status(404).send("Falta enviar datos obligatorios")
     
+    if(!image){image = 'https://st.depositphotos.com/1987177/3470/v/600/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg'}
+
     try {
         let recipe = await Recipe.create({
             name,
