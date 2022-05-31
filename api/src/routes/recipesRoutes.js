@@ -11,7 +11,7 @@ const router = Router();
 
 let getApiInfo = async () => {
     try {
-        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY3}&addRecipeInformation=true&number=10`)
+        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY3}&addRecipeInformation=true&number=100`)
         const { results } = apiData.data
         let data = results.map(e => {
             let dietas = e.diets
@@ -189,17 +189,37 @@ router.get('/:id', async(req, res) => {
         let recipe;
         if(id.length > 12){
             recipe = await Recipe.findByPk(id, {
-                include:[{
+                include:{
                     model: Diet,
                     attributes: ['name'],
                     through: {
                         attributes: []
                     }
-                }]
+                }
             })
 
+            // let response = await recipe?.map(recipe => {
+            //     return {id: recipe.dataValues.id,
+            //         name: recipe.dataValues.name,
+            //         summary: recipe.dataValues.summary,
+            //         healthScore: recipe.dataValues.healthScore,
+            //         image: recipe.dataValues.image,
+            //         steps: recipe.dataValues.steps,
+            //         diets: recipe.dataValues.diets?.map(diet => diet.name)}
+                
+            // });
+
             if(recipe){
-                res.json(recipe)
+                const response = {
+                    id: recipe.dataValues.id,
+                    name: recipe.dataValues.name,
+                    summary: recipe.dataValues.summary,
+                    healthScore: recipe.dataValues.healthScore,
+                    image: recipe.dataValues.image,
+                    steps: recipe.dataValues.steps,
+                    diets: recipe.dataValues.diets?.map(diet => diet.name)
+                }
+                res.json(response)
             }else{
                 res.json({error:'No se encontro la receta'})
             }

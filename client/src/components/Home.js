@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 import Paginado from './Paginado';
 import { FilterSearch } from './FilterSearch';
+import { SearchBar } from './SearchBar';
 
 
 export function Home(){
@@ -53,6 +54,8 @@ export function Home(){
             
             <button onClick={e => handleClick(e)}>Volver a cargar todos las recetas</button>
             
+            <SearchBar />
+
             <FilterSearch 
                 allDiets={allDiets} 
                 setCurrentPage={setCurrentPage} 

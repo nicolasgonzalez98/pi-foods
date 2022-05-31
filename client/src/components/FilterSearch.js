@@ -14,6 +14,7 @@ export function FilterSearch({allDiets, setCurrentPage, setOrder, typeOrder, set
     function handleSort(e){
         setOrder(e.target.value)
         dispatch(filterAlphaScore([e.target.value, typeOrder]))
+        setCurrentPage(1)
     }
 
     function handleTypeSort(e){

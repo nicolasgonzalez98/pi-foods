@@ -26,7 +26,7 @@ export default function RecipeDetail(){
 
             <ul>
                 Diets:
-                {recipe.diet?.map(e => <li>{e}</li>)}
+                {recipe.diets?.map(e => <li>{e}</li>)}
             </ul>
 
             <p dangerouslySetInnerHTML={{ __html: recipe.summary }}></p>
