@@ -57,7 +57,7 @@ export function Home(){
     return(
         <div className='home'>
 
-            {console.log(currentRecipes)}
+            
             <NavBar></NavBar>
             {/* <button onClick={e => handleClick(e)}>Volver a cargar todos las recetas</button> */}
             

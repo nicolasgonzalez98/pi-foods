@@ -76,6 +76,11 @@ textarea{
     cursor: pointer;
 }
 
+.button-submit:disabled{
+    background-color: #f0f5f5;
+    color: black;
+}
+
 p.danger {
     color: red;
     font-size: 10px;
