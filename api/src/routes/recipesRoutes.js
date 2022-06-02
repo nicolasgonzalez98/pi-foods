@@ -11,7 +11,7 @@ const router = Router();
 
 let getApiInfo = async () => {
     try {
-        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY3}&addRecipeInformation=true&number=100`)
+        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
         const { results } = apiData.data
         let data = results.map(e => {
             let dietas = e.diets
@@ -133,7 +133,7 @@ getAllInfoByName = async(n) => {
 
 let getApiIdInfo = async (id) => {
     try {
-        let e = (await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY3}`)).data
+        let e = (await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY2}`)).data
         
 
         let data = {

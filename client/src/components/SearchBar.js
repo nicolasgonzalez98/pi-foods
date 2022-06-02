@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { searchByName } from "../redux/actions";
+import './StylesSheets/SearchBar.css'
 
 export function SearchBar(){
     const [search, setSearch] = useState('')
@@ -14,13 +15,14 @@ export function SearchBar(){
     function handleSubmit(e){
         e.preventDefault()
         dispatch(searchByName(search))
+        setSearch('')
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text" onChange={handleOnChange} value={search} />
-                <input type="submit" value="Buscar" />
+                <input className="input" type="text" onChange={handleOnChange} value={search} />
+                <input className="boton" type="submit" value="Buscar" />
             </form>
         </div>
     )

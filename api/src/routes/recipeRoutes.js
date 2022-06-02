@@ -10,7 +10,7 @@ const router = Router();
 router.post('/', async (req,res) => {
     let { name, summary, healthScore,image,steps, createdInDb, diets} = req.body;
 
-    if(!name || !summary) return res.status(404).send("Falta enviar datos obligatorios")
+    if(!name || !summary) return res.status(400).json({error:"Falta enviar datos obligatorios"})
     
     if(!image){image = 'https://st.depositphotos.com/1987177/3470/v/600/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg'}
 
@@ -33,9 +33,9 @@ router.post('/', async (req,res) => {
             res.send('Receta creada')
         }
 
-        return res.status(404).json({error:'Error'})
+        return res.status(200).send('Receta creada')
     } catch (err) {
-        console.log(err)
+        return res.status(400).json({error:err})
     }
 })
 

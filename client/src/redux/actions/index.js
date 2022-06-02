@@ -55,7 +55,8 @@ export function postRecipe(payload){
         return axios.post('http://localhost:3001/recipe', payload)
         .then(data => {
             dispatch({
-                type: POST_RECIPE
+                type: POST_RECIPE,
+                payload:data
             })
         })
     }

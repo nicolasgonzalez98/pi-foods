@@ -49,6 +49,7 @@ const rootReducer = (state = initialState, action) => {
                 recipes:action.payload
             }
         case POST_RECIPE:
+            console.log(action.payload)
             return {
                 ...state
             }

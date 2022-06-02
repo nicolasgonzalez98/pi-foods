@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { filterByDiets, filterAlphaScore } from '../redux/actions/index'
+import './StylesSheets/FilterSearch.css'
 
 export function FilterSearch({allDiets, setCurrentPage, setOrder, typeOrder, setTypeOrder, order}){
 
@@ -24,21 +25,21 @@ export function FilterSearch({allDiets, setCurrentPage, setOrder, typeOrder, set
     }
 
     return (
-        <div>
-                <select defaultValue='Filtrar por orden' onChange={e => handleSort(e)}>
+        <div className='filter_contenedor'>
+                <select className='filter_types' defaultValue='Filtrar por orden' onChange={e => handleSort(e)}>
                     <option disabled>Filtrar por orden</option>
                     <option value='asc'>Orden ascendente</option>
                     <option value='desc'>Orden descendente</option>
                 </select>
 
-                <select onChange={e => handleFilterDiets(e)}  defaultValue='Filtrar por tipo de dieta'>
+                <select className='filter_types' onChange={e => handleFilterDiets(e)}  defaultValue='Filtrar por tipo de dieta'>
                     <option disabled>Filtrar por tipo de dieta</option>
                     {allDiets.data?.map(e => (
                         <option value={e.name}>{e.name}</option>
                     ))}
                 </select>
 
-                <select onChange={e => handleTypeSort(e)} defaultValue='Tipo de orden'>
+                <select className='filter_types' onChange={e => handleTypeSort(e)} defaultValue='Tipo de orden'>
                     <option disabled>Tipo de orden</option>
                     <option value='alph'>Ordenar alfabeticamente</option>
                     <option value='score'>Ordenar por HealthScore</option>

@@ -1,0 +1,47 @@
+.navbar{
+    background-color: #14C38E;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: min-content;
+    margin: 1rem 1rem;
+    padding: 0rem;
+    border-radius: 16px;
+    box-shadow: 0 0 20px #B8F1B0;
+}
+
+.left{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.link-landing{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1rem;
+}
+
+.create-recipe, .casa{
+    height: 100%;
+    background-color: #1cdba2;
+    color: white;
+    border: none;
+}
+
+.create-recipe:hover, .casa:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #14C38E;
+
+}
+
+.navbar img{
+    width: 50px;
+    height: 50px;
+}
+
+.casa{
+    margin-right: 1rem;
+}

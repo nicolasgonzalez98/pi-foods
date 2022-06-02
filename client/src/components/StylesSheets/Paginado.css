@@ -1,0 +1,27 @@
+.paginado{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    width: fit-content;
+}
+
+.numberA{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    border: 2px solid #14C38E;
+    background-color: #004e1e;
+    color: white;
+    width: 20px;
+    height: 25px;
+    margin: 5px;
+    list-style: none;
+}

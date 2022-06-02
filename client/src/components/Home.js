@@ -2,11 +2,14 @@ import React from 'react';
 import { getAllRecipes,  getAllTypes} from '../redux/actions/index';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {Link} from 'react-router-dom';
+
 import RecipeCard from './RecipeCard';
 import Paginado from './Paginado';
 import { FilterSearch } from './FilterSearch';
 import { SearchBar } from './SearchBar';
+import './StylesSheets/Home.css';
+import { NavBar } from './NavBar';
+
 
 
 export function Home(){
@@ -48,27 +51,36 @@ export function Home(){
     
 
     return(
-        <div>
-            <Link to='/create'><button>Crear Receta</button></Link>
-            <h1>CUCINARE</h1>
-            
-            <button onClick={e => handleClick(e)}>Volver a cargar todos las recetas</button>
-            
-            <SearchBar />
+        <div className='home'>
 
-            <FilterSearch 
-                allDiets={allDiets} 
-                setCurrentPage={setCurrentPage} 
-                setOrder={setOrder}
-                typeOrder = {typeOrder}
-                setTypeOrder = {setTypeOrder}
-                order = {order}
-            />
-    
-            <div>
-                {currentRecipes?.map(e => <RecipeCard key={e.id} id={e.id}   name={e.name} image={e.image} type={e.diets}/>)}
+            
+            <NavBar></NavBar>
+            {/* <button onClick={e => handleClick(e)}>Volver a cargar todos las recetas</button> */}
+            
+            <div className='filtros'>
+                <FilterSearch 
+                    allDiets={allDiets} 
+                    setCurrentPage={setCurrentPage} 
+                    setOrder={setOrder}
+                    typeOrder = {typeOrder}
+                    setTypeOrder = {setTypeOrder}
+                    order = {order}
+                />
+
+                <SearchBar />
             </div>
-            <div>
+    
+            <div className='recetas'>
+                {currentRecipes?.map(e => 
+                <RecipeCard 
+                    key={e.id} 
+                    id={e.id}   
+                    name={e.name} 
+                    image={e.image} 
+                    type={e.diets}
+                />)}
+            </div>
+            <div className='pages'>
                 <Paginado 
                 recipesPerPage={recipesPerPage} 
                 allRecipes={allRecipes.data?.length} 

@@ -1,0 +1,75 @@
+.detail-page{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.article{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 1rem;
+    max-width: 80%;
+}
+
+.foto_recipe{
+    width: 500px;
+    height: 313px;
+}
+
+.dish-types{
+    padding-inline-start: 0;
+    
+}
+
+.dish-types{
+    color: rgb(112, 112, 112);
+}
+
+.list-diets{
+    padding-inline-start: 0;
+    
+}
+
+.list-diets li{
+    color: rgb(112, 112, 112);
+}
+
+.score{
+    border: 2px solid #14C38E;
+    width: 10%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.score p{
+    font-size: 2rem;
+    font-weight: 900;
+    color: #14C38E;
+}
+
+.summary p{
+    color: rgb(112, 112, 112);
+}
+
+.summary a{
+    text-decoration: none;
+}
+
+.summary a:hover{
+    text-decoration: underline;
+}
+
+.summary a:visited{
+    text-decoration: none;
+}
+
+.steps p{
+    color: rgb(112, 112, 112);
+}

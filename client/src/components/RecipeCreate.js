@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTypes, postRecipe } from '../redux/actions/index';
+import { NavBar } from "./NavBar";
+import './StylesSheets/RecipeCreate.css'
 
 export function RecipeCreate(){
 
@@ -74,7 +76,7 @@ export function RecipeCreate(){
         setErrors(validate({
             ...input,
             [e.target.name]:e.target.value
-          }))
+        }))
     }
 
     function handleSubmit(e){
@@ -92,71 +94,104 @@ export function RecipeCreate(){
     }
     
     return (
-        <div>
-            <h1>Crea tu propia receta!</h1>
-
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Name of recipe: </label>
-                    <input 
-                        type='text' 
-                        name='name' 
-                        placeholder='Name of recipe...' 
-                        value={input.name}
-                        onChange={handleChange}
-                    >
-                    </input>
-                </div>
-
-                <div>
-                    <label>Summary: </label>
-                    <textarea type='text' name='summary' value={input.summary} onChange={handleChange}></textarea>
-                </div>
-
-                <div>
-                    <label>HealthScore:</label>
-                    <input type='number' name='healthScore' value={input.healthScore} onChange={handleChange}></input>
-                </div>
-
-                <div>
-                    <label>Image: </label>
-                    <input type='text' name='image'value={input.image} onChange={handleChange}></input>
-                </div>
-
-                <div>
-                    <label>Steps: </label>
-                    <textarea type='text' name='steps' value={input.steps} onChange={handleChange}></textarea>
-                </div>
-                
-                <div>
-                    <label>Tipos de dieta</label>
-                    <select onChange={handleDiet} defaultValue='Eligir tipos de dietas' >
-                        <option disabled>Eligir tipos de dietas</option>
-                        {
-                            allDiets.data && allDiets.data?.map(e => {
-                                return (
-                                    <option key={e.name} value={e.name} name={e.name}>{e.name}</option>
-                                )
-                            })
-                        }
-                    </select>
-                </div>
-
-                <button type="submit">Enviar Receta</button>
-            </form>
-
-            <div className="my-diets">
-                <label>Mis dietas</label>
-                {input.diets.map(d => {
-                    return (
-                    <div key={d} className="tipo_dieta">
-                        <p>{d}</p>
-                        <button onClick={() => handleDelete(d)}>X</button>
+        <div className="cont-form">
+            <NavBar />
+            
+            <div className="create_recipe">
+                <form className="form" onSubmit={handleSubmit}>
+                    <h1>Crea tu propia receta!</h1>
+                    
+                    <div >
+                        <label>Name of recipe: </label>
+                        <input 
+                            type='text' 
+                            name='name' 
+                            placeholder='Name of recipe...' 
+                            value={input.name}
+                            onChange={handleChange}
+                            className={errors.name && 'danger'}
+                        >
+                        </input>
+                        {errors.name && <p className="danger">{errors.name}</p>}
                     </div>
-                    )
-                }
-            )}
+                    
+                    <div>
+                        <label>Summary: </label>
+                        <textarea 
+                            type='text' 
+                            name='summary' 
+                            value={input.summary}
+                            className={errors.summary && 'danger'} 
+                            onChange={handleChange}> 
+                        </textarea>
+                        {errors.summary && <p className="danger">{errors.summary}</p>}
+                    </div>
+
+                    <div>
+                        <label>HealthScore:</label>
+                        <input 
+                            type='number' 
+                            name='healthScore' 
+                            value={input.healthScore} 
+                            onChange={handleChange}
+                            className={errors.healthScore && 'danger'}
+                            >
+                        </input>
+                        {errors.healthScore && <p className="danger">{errors.healthScore}</p>}
+                    </div>
+
+                    <div>
+                        <label>Image: </label>
+                        <input type='text' name='image'value={input.image} onChange={handleChange}></input>
+                    </div>
+
+                    <div>
+                        <label>Steps: </label>
+                        <textarea 
+                            type='text' 
+                            name='steps' 
+                            value={input.steps} 
+                            onChange={handleChange}
+                            className={errors.steps && 'danger'}
+                            >
+
+                        </textarea>
+                        {errors.steps && <p className="danger">{errors.steps}</p>}
+                    </div>
+                    
+                    <div className="class-select">
+                        <label>Tipos de dieta</label>
+                        <select onChange={handleDiet} defaultValue='Eligir tipos de dietas' >
+                            <option disabled>Eligir tipos de dietas</option>
+                            {
+                                allDiets.data && allDiets.data?.map(e => {
+                                    return (
+                                        <option key={e.name} value={e.name} name={e.name}>{e.name}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                    </div>
+
+                    <button className="button-submit" type="submit">Enviar Receta</button>
+                </form>
+
+                <div className="my-diets">
+                    <h3>Mis dietas</h3>
+                    <div className="dietitas">
+                        {input.diets.map(d => {
+                            return (
+                            <div key={d} className="tipo_dieta">
+                                <button className="cerrar" onClick={() => handleDelete(d)}>X</button>
+                                <p>{d}</p> 
+                            </div>
+                            )
+                        }
+                    )}
+                    </div>
+                </div>
             </div>
+            
         </div>
     )
 }
