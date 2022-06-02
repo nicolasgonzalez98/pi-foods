@@ -2,13 +2,14 @@
     width: 100%;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    
     padding: 1rem 0;
 }
 
 .article{
     background-color: white;
+    align-self: center;
     display: flex;
     flex-direction: column;
     border-radius: 16px;
@@ -72,4 +73,11 @@
 
 .steps p{
     color: rgb(112, 112, 112);
+}
+
+/*Errors*/
+
+.foto_error{
+    height: 500px;
+    width: 400px;
 }

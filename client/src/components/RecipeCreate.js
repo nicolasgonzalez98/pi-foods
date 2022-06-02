@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTypes, postRecipe } from '../redux/actions/index';
@@ -8,6 +9,7 @@ import './StylesSheets/RecipeCreate.css'
 export function RecipeCreate(){
 
     const dispatch = useDispatch()
+    
 
     function validate(input){
         let errors = {}
@@ -81,6 +83,7 @@ export function RecipeCreate(){
 
     function handleSubmit(e){
         e.preventDefault()
+        
         dispatch(postRecipe(input))
         setInput({
             name: '',
@@ -90,6 +93,7 @@ export function RecipeCreate(){
             steps: '',
             diets: []
         })
+        alert('Receta creada')
         
     }
     
@@ -173,7 +177,13 @@ export function RecipeCreate(){
                         </select>
                     </div>
 
-                    <button className="button-submit" type="submit">Enviar Receta</button>
+                    
+                    {
+                        ((errors.name) || (errors.summary) || (errors.steps) || (errors.healthScore)) ?
+                        // <button disabled className="button-submit" type="submit">Enviar Receta</button>
+                        <button disabled className="button-submit" type="submit">No puedes enviar porque faltan datos</button>:
+                        <button className="button-submit" type="submit">Enviar Receta</button>
+                    }
                 </form>
 
                 <div className="my-diets">

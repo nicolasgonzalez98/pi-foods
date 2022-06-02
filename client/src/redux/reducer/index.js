@@ -19,7 +19,8 @@ const initialState = {
     recipes:[],
     all_recipes:[],
     recipe:{},
-    types:[]
+    types:[],
+    error:false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -38,11 +39,21 @@ const rootReducer = (state = initialState, action) => {
                 types:action.payload
             }
         case GET_RECIPE_BY_ID:
-
-            return {
-                ...state,
-                recipe:action.payload.data
+            console.log(action.payload.data)
+            if(action.payload.data.error){
+                return {
+                    ...state,
+                    recipe:action.payload.data,
+                    error:true
+                }
+            }else{
+                return {
+                    ...state,
+                    recipe:action.payload.data,
+                    error:false
+                }
             }
+            
         case GET_RECIPE_BY_NAME:
             return{
                 ...state,
