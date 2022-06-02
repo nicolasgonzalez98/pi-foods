@@ -6,7 +6,7 @@ import { getRecipeById } from "../redux/actions/index";
 import './StylesSheets/RecipeDetail.css'
 import { NavBar } from './NavBar';
 import  Gorrito  from './imagenes/Gorrito.jpg'
-import { LoaderFood } from './LoaderFood'
+import  Loader  from "./imagenes/rodrigosloader.gif";
 
 export default function RecipeDetail(){
     function capitalize(str){
@@ -33,7 +33,7 @@ export default function RecipeDetail(){
                 <>
                     {
                         recipe.id != id ?
-                        <><LoaderFood /></> :
+                        <><div><img src={Loader}></img></div></> :
                         <>
                             <h1>{recipe.name}</h1>
                     <img className="foto_recipe" src={recipe.image} alt={recipe.name}></img>

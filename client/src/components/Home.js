@@ -9,6 +9,8 @@ import { FilterSearch } from './FilterSearch';
 import { SearchBar } from './SearchBar';
 import './StylesSheets/Home.css';
 import { NavBar } from './NavBar';
+import Gorrito from './imagenes/Gorrito.jpg'
+import  Loader  from "./imagenes/rodrigosloader.gif";
 
 
 
@@ -48,12 +50,14 @@ export function Home(){
         dispatch(getAllRecipes())
     }
 
+    const err = useSelector((state) => state.error)
+
     
 
     return(
         <div className='home'>
 
-            
+            {console.log(currentRecipes)}
             <NavBar></NavBar>
             {/* <button onClick={e => handleClick(e)}>Volver a cargar todos las recetas</button> */}
             
@@ -70,23 +74,42 @@ export function Home(){
                 <SearchBar />
             </div>
     
-            <div className='recetas'>
-                {currentRecipes?.map(e => 
-                <RecipeCard 
-                    key={e.id} 
-                    id={e.id}   
-                    name={e.name} 
-                    image={e.image} 
-                    type={e.diets}
-                />)}
-            </div>
-            <div className='pages'>
-                <Paginado 
-                recipesPerPage={recipesPerPage} 
-                allRecipes={allRecipes.data?.length} 
-                pagination={pagination}
-                />
-            </div>
+            {
+                !err ? 
+                <>
+                    {
+                        (!currentRecipes) ?
+                        <><div className='allrecetas-error'><img src={Loader}></img></div> </> :
+                        <>
+                            <div className='recetas'>
+                                {currentRecipes?.map(e => 
+                                <RecipeCard 
+                                    key={e.id} 
+                                    id={e.id}   
+                                    name={e.name} 
+                                    image={e.image} 
+                                    type={e.diets}
+                                />)}
+                            </div>
+                            <div className='pages'>
+                                <Paginado 
+                                recipesPerPage={recipesPerPage} 
+                                allRecipes={allRecipes.data?.length} 
+                                pagination={pagination}
+                                />
+                            </div>
+                        </>
+                    }
+                </> :
+                <>
+                    <div className='allrecetas-error'>
+                        <div>
+                            <img className="foto_error" src={Gorrito} alt='gorrito'></img>
+                            <h1>No se pudieron cargar las recetas</h1>
+                        </div>
+                    </div>
+                </>
+            }
         </div>
     )
 }

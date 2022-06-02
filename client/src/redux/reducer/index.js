@@ -27,13 +27,23 @@ const rootReducer = (state = initialState, action) => {
     switch(action.type){
         case GET_ALL_RECIPES:
             
+            if(action.payload.data.length === 0){
+                return{
+                    ...state,
+                    recipes: action.payload,
+                    all_recipes:action.payload,
+                    error:true
+                }
+            }
+
             return{
                 ...state,
                 recipes: action.payload,
-                all_recipes:action.payload
+                all_recipes:action.payload,
+                error:false
             }
         case GET_ALL_TYPES:
-            
+
             return{
                 ...state,
                 types:action.payload
@@ -60,7 +70,7 @@ const rootReducer = (state = initialState, action) => {
                 recipes:action.payload
             }
         case POST_RECIPE:
-            console.log(action.payload)
+            
             return {
                 ...state
             }

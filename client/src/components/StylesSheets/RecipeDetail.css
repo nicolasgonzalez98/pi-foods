@@ -61,6 +61,7 @@
 
 .summary a{
     text-decoration: none;
+    color: rgb(112, 112, 112);
 }
 
 .summary a:hover{
