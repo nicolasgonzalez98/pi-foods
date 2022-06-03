@@ -43,6 +43,7 @@ export function FilterSearch({allDiets, setCurrentPage, setOrder, typeOrder, set
                     <option disabled>Tipo de orden</option>
                     <option value='alph'>Ordenar alfabeticamente</option>
                     <option value='score'>Ordenar por HealthScore</option>
+                    <option value='variety'>Ordenar por variedad de dietas</option>
                 </select>
                 
             </div>

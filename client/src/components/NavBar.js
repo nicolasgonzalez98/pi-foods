@@ -11,7 +11,12 @@ export function NavBar(){
                     <Link className='link-landing' to='/'>
                         <img src={Chefcito} alt='chefcito'></img>
                     </Link>
-                    <Link to='/create'><button className='create-recipe'>Crear Receta</button></Link></div>
+                    <Link to='/create'><button className='create-recipe'>Crear Receta</button></Link>
+                    <Link to='/my-recipes'><button className='create-recipe'>Mis recetas</button></Link>
+                    <Link to='/favorites'><button className='create-recipe'>Favoritos</button></Link>
+                    <Link to='/random'><button className='create-recipe'>¿Que puedo comer hoy?</button></Link>
+                </div>
+                    
                 <div className='right'>
                     <Link to='/home'><button className='casa'><img src={casa} alt='home'></img></button></Link>
                 </div>

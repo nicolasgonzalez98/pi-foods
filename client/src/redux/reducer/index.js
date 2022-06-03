@@ -98,6 +98,14 @@ const rootReducer = (state = initialState, action) => {
                         r = all_recipes.sort(sortDesc)
                         rf = filter_recets.sort(sortDesc)
                     }
+                }else if(type==='variety'){
+                    if(ord === 'asc'){
+                        r = all_recipes.sort((a,b) => a.diets.length - b.diets.length)
+                        rf = filter_recets.sort((a,b) => a.diets.length - b.diets.length)
+                    }else{
+                        r = all_recipes.sort((a,b) => b.diets.length - a.diets.length)
+                        rf = filter_recets.sort((a,b) => b.diets.length - a.diets.length)
+                    }
                 }else{
                     if(ord === 'asc'){
                         r = all_recipes.sort((a,b) => a.healthScore - b.healthScore)
