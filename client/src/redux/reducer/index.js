@@ -1,4 +1,4 @@
-import {GET_ALL_RECIPES, GET_ALL_TYPES, GET_RECIPE_BY_ID,
+import {GET_ALL_RECIPES, GET_ALL_TYPES, GET_RECIPE_BY_ID,DELETE_RECIPE, UPDATE_RECIPE,
         FILTER_BY_DIETS, FILTER_ALPHA_SCORE,
         POST_RECIPE, GET_RECIPE_BY_NAME} 
 from '../actions/index'
@@ -74,6 +74,14 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state
             }
+        case DELETE_RECIPE:
+            return {
+                ...state
+            }
+        case UPDATE_RECIPE:
+                return {
+                    ...state
+                }
         case FILTER_BY_DIETS:
             let all_recipes = state.all_recipes.data;
             const diet_type = action.payload

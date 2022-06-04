@@ -1,12 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable eqeqeq */
 import React from "react";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import { getRecipeById } from "../redux/actions/index";
+import { deleteRecipe, getRecipeById } from "../redux/actions/index";
 import './StylesSheets/RecipeDetail.css'
 import { NavBar } from './NavBar';
 import  Gorrito  from './imagenes/Gorrito.jpg'
 import  Loader  from "./imagenes/rodrigosloader.gif";
+import { useNavigate } from 'react-router-dom';
 
 export default function RecipeDetail(){
     function capitalize(str){
@@ -15,6 +18,7 @@ export default function RecipeDetail(){
     }
 
     const dispatch = useDispatch()
+    const history = useNavigate()
 
     let { id } = useParams()
     const recipe = useSelector((state) => state.recipe)
@@ -23,6 +27,11 @@ export default function RecipeDetail(){
     useEffect ( () => {
         dispatch(getRecipeById(id))
     },[])
+
+    function delRecipe(idRecipe){
+        dispatch(deleteRecipe(idRecipe))
+        history('/home')
+    }
     
 
     return (
@@ -33,7 +42,7 @@ export default function RecipeDetail(){
                 <>
                     {
                         recipe.id != id ?
-                        <><div><img src={Loader}></img></div></> :
+                        <><div><img src={Loader} alt='loader'></img></div></> :
                         <>
                             <h1>{recipe.name}</h1>
                     <img className="foto_recipe" src={recipe.image} alt={recipe.name}></img>
@@ -93,14 +102,27 @@ export default function RecipeDetail(){
                             </>
                         )
                     }
-                        </>
+                    {
+                        recipe.createdInDb && (
+                            <>
+                                <div className="actions-buttons">
+                                    <button onClick={() => delRecipe(id)} className="delete-button">
+                                        <span>X</span>Delete
+                                    </button>
+                                </div>
+                            </>
+                        )
+                    }
+                    </>
                     }
                 </> : 
-                <div>
-                    <img className="foto_error" src={Gorrito} alt='gorrito'></img>
-                    <h1>Recipe not found</h1>
-                    <p>The recipe doesn't exist</p>
-                </div>    
+                <>
+                    <div>
+                        <img className="foto_error" src={Gorrito} alt='gorrito'></img>
+                        <h1>Recipe not found</h1>
+                        <p>The recipe doesn't exist</p>
+                    </div>
+                </>    
             }
                 
 
