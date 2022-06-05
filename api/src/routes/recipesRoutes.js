@@ -3,7 +3,7 @@ const { Recipe, Diet, Op } = require('../db');
 
 require('dotenv').config();
 const axios = require("axios")
-const {API_KEY, API_KEY2, API_KEY3} = process.env;
+const {API_KEY, API_KEY2, API_KEY3, API_KEY4, API_KEY5} = process.env;
 
 
 
@@ -11,7 +11,7 @@ const router = Router();
 
 let getApiInfo = async () => {
     try {
-        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY2}&addRecipeInformation=true&number=100`)
         const { results } = apiData.data
         let data = results.map(e => {
             let dietas = e.diets
@@ -66,8 +66,8 @@ let getDbInfo = async () => {
                 healthScore: recipe.dataValues.healthScore,
                 image: recipe.dataValues.image,
                 steps: recipe.dataValues.steps,
-                diets: recipe.dataValues.diets?.map(diet => diet.name)}
-            
+                diets: recipe.dataValues.diets?.map(diet => diet.name),
+                createdInDb: recipe.dataValues.createdInDb}
         });
 
         
@@ -133,7 +133,7 @@ getAllInfoByName = async(n) => {
 
 let getApiIdInfo = async (id) => {
     try {
-        let e = (await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY2}`)).data
+        let e = (await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY3}`)).data
         
 
         let data = {
@@ -217,7 +217,8 @@ router.get('/:id', async(req, res) => {
                     healthScore: recipe.dataValues.healthScore,
                     image: recipe.dataValues.image,
                     steps: recipe.dataValues.steps,
-                    diets: recipe.dataValues.diets?.map(diet => diet.name)
+                    diets: recipe.dataValues.diets?.map(diet => diet.name),
+                    createdInDb: recipe.dataValues.createdInDb
                 }
                 res.json(response)
             }else{

@@ -88,7 +88,7 @@
 .actions-buttons button{
     width: 6rem;
     height: 3rem;
-    
+    cursor: pointer;
     border-radius: 8px;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .delete-button:hover{
-    cursor: pointer;
+    
     background-color: white;
     color: #770d05;
     border: 2px solid #911910;

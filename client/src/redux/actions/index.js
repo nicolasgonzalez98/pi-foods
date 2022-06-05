@@ -87,9 +87,9 @@ export function deleteRecipe(id){
     }
 }
 
-export function updateRecipe(id){
+export function updateRecipe(id, payload){
     return function(dispatch){
-        return axios.put(`/update/${id}`)
+        return axios.put(`http://localhost:3001/recipe/update/${id}`, payload)
         .then(data => {
             dispatch({
                 type:UPDATE_RECIPE,

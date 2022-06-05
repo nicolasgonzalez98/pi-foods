@@ -3,7 +3,7 @@
 import React from "react";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { deleteRecipe, getRecipeById } from "../redux/actions/index";
 import './StylesSheets/RecipeDetail.css'
 import { NavBar } from './NavBar';
@@ -109,6 +109,7 @@ export default function RecipeDetail(){
                                     <button onClick={() => delRecipe(id)} className="delete-button">
                                         <span>X</span>Delete
                                     </button>
+                                    <Link to={`/update/${id}`}><button>UpdateRecipe</button></Link>
                                 </div>
                             </>
                         )

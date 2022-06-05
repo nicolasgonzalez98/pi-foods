@@ -5,6 +5,7 @@ import Home from './components/Home';
 import RecipeDetail from './components/RecipeDetail'
 import RecipeCreate from './components/RecipeCreate'
 import MyRecipesDb from './components/MyRecipesDb';
+import UpdateRecipe from './components/UpdateRecipe';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path='/create' element={<RecipeCreate />} />
         <Route path='/my-recipes' element={<MyRecipesDb />} />
         <Route path="/:id" element={<RecipeDetail />} />
+        <Route path="/update/:id" element={<UpdateRecipe />} />
       </Routes>
     </BrowserRouter>
   );
