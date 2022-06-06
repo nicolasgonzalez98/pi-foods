@@ -1,6 +1,7 @@
 import {GET_ALL_RECIPES, GET_ALL_TYPES, GET_RECIPE_BY_ID,DELETE_RECIPE, UPDATE_RECIPE,
         FILTER_BY_DIETS, FILTER_ALPHA_SCORE,
-        POST_RECIPE, GET_RECIPE_BY_NAME} 
+        POST_RECIPE, GET_RECIPE_BY_NAME,
+        ADD_FAVORITE, DELETE_FAVORITE} 
 from '../actions/index'
 
 function sortAsc(x, y){
@@ -20,7 +21,8 @@ const initialState = {
     all_recipes:[],
     recipe:{},
     types:[],
-    error:false
+    error:false,
+    favourite_recipes:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -133,6 +135,16 @@ const rootReducer = (state = initialState, action) => {
                 all_recipes: t,
                 recipes: tf
             } 
+        case ADD_FAVORITE:
+            return {
+                ...state,
+                favourite_recipes: state.favourite_recipes.concat(action.payload)
+            }
+        case DELETE_FAVORITE:
+            return {
+                ...state,
+                favourite_recipes: state.favourite_recipes.filter(r => r.id.toString() !== action.payload)
+            }
         default:
             return state
     }

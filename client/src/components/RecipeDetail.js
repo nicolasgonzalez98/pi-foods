@@ -4,7 +4,7 @@ import React from "react";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from "react-router-dom";
-import { deleteRecipe, getRecipeById } from "../redux/actions/index";
+import { addFavorite, deleteFavorite, deleteRecipe, getRecipeById } from "../redux/actions/index";
 import './StylesSheets/RecipeDetail.css'
 import { NavBar } from './NavBar';
 import  Gorrito  from './imagenes/Gorrito.jpg'
@@ -23,6 +23,8 @@ export default function RecipeDetail(){
     let { id } = useParams()
     const recipe = useSelector((state) => state.recipe)
     const err = useSelector((state) => state.error)
+    const favoritos = useSelector(state => state.favourite_recipes)
+    const recipesFav = favoritos.find(r => r.id.toString()  === id)
 
     useEffect ( () => {
         dispatch(getRecipeById(id))
@@ -32,10 +34,21 @@ export default function RecipeDetail(){
         dispatch(deleteRecipe(idRecipe))
         history('/home')
     }
+
+    function handleFavourite(){
+        
+        if(!recipesFav){
+            dispatch(addFavorite(recipe))
+        }else{
+            dispatch(deleteFavorite(id))
+        }
+        
+    }
     
 
     return (
         <div className="detail-page">
+            
             <NavBar />
             <article className="article">
                 {!err ?
@@ -115,7 +128,15 @@ export default function RecipeDetail(){
                                 </>
                             )
                         }
-                        <button className="favorite_button">Agregar a favoritos</button>
+                        <button 
+                            onClick={handleFavourite} 
+                            className="favorite_button">
+                            {
+                                !recipesFav ?
+                                <>Agregar a favoirtos</> :
+                                <>Eliminar de favoritos</>
+                            }
+                        </button>
                     </div>
                     </>
                     }
