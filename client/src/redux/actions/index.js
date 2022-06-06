@@ -15,7 +15,7 @@ export const DELETE_FAVORITE = 'DELETE_FAVORITE'
 
 export function getAllRecipes(){
     return function(dispatch){
-        return axios.get('http://localhost:3001/recipes')
+        return axios.get('/recipes')
         .then(json => {
             dispatch({
                 type: GET_ALL_RECIPES,
@@ -30,7 +30,7 @@ export function getAllRecipes(){
 
 export function getAllTypes(){
     return function(dispatch){
-        return axios.get('http://localhost:3001/types')
+        return axios.get('/types')
         .then(json => {
             dispatch({
                 type: GET_ALL_TYPES,
@@ -43,7 +43,7 @@ export function getAllTypes(){
 
 export function getRecipeById(id){
     return function(dispatch){
-        return axios.get(`http://localhost:3001/recipes/${id}`)
+        return axios.get(`/recipes/${id}`)
         .then(json => {
             dispatch({
                 type: GET_RECIPE_BY_ID,
@@ -55,7 +55,7 @@ export function getRecipeById(id){
 
 export function postRecipe(payload){
     return function(dispatch){
-        return axios.post('http://localhost:3001/recipe', payload)
+        return axios.post('/recipe', payload)
         .then(data => {
             dispatch({
                 type: POST_RECIPE,
@@ -67,7 +67,7 @@ export function postRecipe(payload){
 
 export function searchByName(name){
     return function(dispatch){
-        return axios.get(`http://localhost:3001/recipes?name=${name}`)
+        return axios.get(`/recipes?name=${name}`)
         .then(data => {
             dispatch({
                 type:GET_RECIPE_BY_NAME,
@@ -79,7 +79,7 @@ export function searchByName(name){
 
 export function deleteRecipe(id){
     return function(dispatch){
-        return axios.delete(`http://localhost:3001/recipe/clear/${id}`)
+        return axios.delete(`/recipe/clear/${id}`)
         .then(data => {
             dispatch({
                 type:DELETE_RECIPE,
@@ -91,7 +91,7 @@ export function deleteRecipe(id){
 
 export function updateRecipe(id, payload){
     return function(dispatch){
-        return axios.put(`http://localhost:3001/recipe/update/${id}`, payload)
+        return axios.put(`/recipe/update/${id}`, payload)
         .then(data => {
             dispatch({
                 type:UPDATE_RECIPE,

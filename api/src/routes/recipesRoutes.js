@@ -228,6 +228,8 @@ router.get('/:id', async(req, res) => {
             recipe = await getApiIdInfo(id)
             if(recipe){
                 return res.json(recipe)
+            }else{
+                res.json({error:'No se encontro la receta'})
             }
         }
     } catch (err) {
