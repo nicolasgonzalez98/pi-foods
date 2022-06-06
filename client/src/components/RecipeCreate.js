@@ -24,7 +24,7 @@ export function RecipeCreate(){
             errors.summary='No ingresaste el resumen de la receta!'
         }
 
-        if((input.healthScore < 0) || (input.healthScore >100)){
+        if((input.healthScore < 1) || (input.healthScore >100)){
             errors.healthScore = 'Ingresaste un HealthScore invalido.'
         }
 
@@ -86,16 +86,19 @@ export function RecipeCreate(){
     function handleSubmit(e){
         e.preventDefault()
         
-        dispatch(postRecipe(input))
-        setInput({
-            name: '',
-            summary: '',
-            healthScore:0,
-            image: '',
-            steps: '',
-            diets: []
-        })
-        history('/home')
+        if(Object.keys(errors).length === 0){
+            dispatch(postRecipe(input))
+            setInput({
+                name: '',
+                summary: '',
+                healthScore:0,
+                image: '',
+                steps: '',
+                diets: []
+            })
+            history('/home')
+        }
+        
         
 
         
@@ -192,7 +195,6 @@ export function RecipeCreate(){
                             
                             {
                                 ((errors.summary) || (errors.steps) || (errors.healthScore) || (!input.name)) ?
-                                // <button disabled className="button-submit" type="submit">Enviar Receta</button>
                                 <button disabled className="button-submit" type="submit">Enviar Receta</button>:
                                 <button className="button-submit" type="submit">Enviar Receta</button>
                             }

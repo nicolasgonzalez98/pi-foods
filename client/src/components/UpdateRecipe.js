@@ -18,7 +18,7 @@ export function UpdateRecipe(){
     function validate(input){
         let errors = {}
 
-        if((input.healthScore < 0) || (input.healthScore >100)){
+        if((input.healthScore < 1) || (input.healthScore >100)){
             errors.healthScore = 'Ingresaste un HealthScore invalido.'
         }
 

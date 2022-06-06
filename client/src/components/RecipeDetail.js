@@ -102,18 +102,21 @@ export default function RecipeDetail(){
                             </>
                         )
                     }
-                    {
-                        recipe.createdInDb && (
-                            <>
-                                <div className="actions-buttons">
-                                    <button onClick={() => delRecipe(id)} className="delete-button">
-                                        <span>X</span>Delete
-                                    </button>
-                                    <Link to={`/update/${id}`}><button>UpdateRecipe</button></Link>
-                                </div>
-                            </>
-                        )
-                    }
+                    <div className="actions-buttons">
+                        {
+                            recipe.createdInDb && (
+                                <>
+                                    
+                                        <button onClick={() => delRecipe(id)} className="delete-button">
+                                            <span>X</span>Delete
+                                        </button>
+                                        <Link to={`/update/${id}`}><button className="update_button">Update Recipe</button></Link>
+                                    
+                                </>
+                            )
+                        }
+                        <button className="favorite_button">Agregar a favoritos</button>
+                    </div>
                     </>
                     }
                 </> : 

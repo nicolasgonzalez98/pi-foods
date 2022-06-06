@@ -90,6 +90,7 @@
     height: 3rem;
     cursor: pointer;
     border-radius: 8px;
+    margin-right: 1rem;
 }
 
 .delete-button{
@@ -113,6 +114,29 @@
     border: 2px solid #911910;
 }
 
+.update_button{
+    background-color: #0f1fb3;
+    color: white;
+    border: 2px solid #0f1fb3;
+}
+
+.update_button:hover{
+    background-color: white;
+    color: #0f1fb3;
+    border: 2px solid #0f1fb3;
+}
+
+.favorite_button{
+    background-color: #657c10;
+    color: white;
+    border: 2px solid #657c10;
+}
+
+.favorite_button:hover{
+    background-color: white;
+    border: 2px solid #657c10;
+    color: #657c10;
+}
 
 
 /*Errors*/
