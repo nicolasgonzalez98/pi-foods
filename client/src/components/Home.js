@@ -44,12 +44,6 @@ export function Home(){
         dispatch(getAllTypes())
     }, [])
 
-
-    function handleClick(e){
-        e.preventDefault()
-        dispatch(getAllRecipes())
-    }
-
     const err = useSelector((state) => state.error)
 
     
@@ -96,6 +90,7 @@ export function Home(){
                                 recipesPerPage={recipesPerPage} 
                                 allRecipes={allRecipes.data?.length} 
                                 pagination={pagination}
+                                currentPage={currentPage}
                                 />
                             </div>
                         </>
@@ -105,7 +100,7 @@ export function Home(){
                     <div className='allrecetas-error'>
                         <div>
                             <img className="foto_error" src={Gorrito} alt='gorrito'></img>
-                            <h1>No se pudieron cargar las recetas</h1>
+                            <h1>No se encontraron recetas con ese nombre</h1>
                         </div>
                     </div>
                 </>

@@ -67,10 +67,20 @@ const rootReducer = (state = initialState, action) => {
             }
             
         case GET_RECIPE_BY_NAME:
-            return{
-                ...state,
-                recipes:action.payload
+            if(action.payload.data.length === 0){
+                return{
+                    ...state,
+                    recipes:action.payload,
+                    error: true
+                }
+            }else{
+                return{
+                    ...state,
+                    recipes:action.payload,
+                    error: false
+                }
             }
+            
         case POST_RECIPE:
             
             return {

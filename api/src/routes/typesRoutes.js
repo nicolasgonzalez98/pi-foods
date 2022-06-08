@@ -87,6 +87,12 @@ let getAllInfo = async () => {
 router.get('/', async (req, res, next) => {
     let resultado = []
     try {
+        let total_diets = await Diet.findAll()
+        if(total_diets?.length > 0){
+            
+            return res.json(total_diets)
+        }
+
         let datos = await getAllInfo()
         let total = datos.map(e => e.diets)
         
@@ -104,6 +110,8 @@ router.get('/', async (req, res, next) => {
         await Promise.all(pending_promises_array)
 
         const allTypes = await Diet.findAll()
+        
+        
         res.json(allTypes)
     } catch (error) {
         next(error)

@@ -4,6 +4,7 @@ import { NavBar } from './NavBar';
 import  Gorrito  from './imagenes/Gorrito.jpg'
 //import  Loader  from "./imagenes/rodrigosloader.gif";
 import  RecipeCard  from './RecipeCard'
+import './StylesSheets/Favourites.css'
 
 export default function Favourites(){
     const recipes_favourites = useSelector(state => state.favourite_recipes)
@@ -31,7 +32,7 @@ export default function Favourites(){
                     
                 </> :
                 <>
-                    <div className='allrecetas-error'>
+                    <div className='fav-error'>
                         <div>
                             <img className="foto_error" src={Gorrito} alt='gorrito'></img>
                             <h1>No tienes recetas favoritas...</h1>

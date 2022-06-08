@@ -170,7 +170,7 @@ router.get('/', async(req, res, next) => {
         if(name){
             info = await getAllInfoByName(name)
             if(info.length === 0){
-                info = {error:'No hay recetas con ese nombre'}
+                info = []
             }
         }else{
             info = await getAllInfo();

@@ -98,10 +98,7 @@ export function RecipeCreate(){
             })
             history('/home')
         }
-        
-        
 
-        
     }
     
     return (
@@ -192,12 +189,12 @@ export function RecipeCreate(){
                                 </select>
                             </div>
 
-                            
-                            {
+                            <button className="button-submit" type="submit">Enviar Receta</button>
+                            {/* {
                                 ((errors.summary) || (errors.steps) || (errors.healthScore) || (!input.name)) ?
                                 <button disabled className="button-submit" type="submit">Enviar Receta</button>:
-                                <button className="button-submit" type="submit">Enviar Receta</button>
-                            }
+                                
+                            } */}
                         </form>
 
                         <div className="my-diets">
