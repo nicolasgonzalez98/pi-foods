@@ -82,7 +82,7 @@ router.put('/update/:id', async(req, res) => {
         }
 
         if(healthScore){
-            if(healthScore<=100 || healthScore>=0){
+            if(healthScore<=100 || healthScore>0){
                 condition.healthScore =healthScore
             }
             

@@ -53,7 +53,7 @@ export function Home(){
 
             
             <NavBar></NavBar>
-            {/* <button onClick={e => handleClick(e)}>Volver a cargar todos las recetas</button> */}
+            
             
             <div className='filtros'>
                 <FilterSearch 
@@ -100,7 +100,7 @@ export function Home(){
                     <div className='allrecetas-error'>
                         <div>
                             <img className="foto_error" src={Gorrito} alt='gorrito'></img>
-                            <h1>No se encontraron recetas con ese nombre</h1>
+                            <h1>No se encontraron recetas</h1>
                         </div>
                     </div>
                 </>

@@ -18,7 +18,7 @@ export function UpdateRecipe(){
     function validate(input){
         let errors = {}
 
-        if((input.healthScore < 1) || (input.healthScore >100)){
+        if(((input.healthScore < 1) || (input.healthScore >100)) || isNaN(input.healthScore)){
             errors.healthScore = 'Ingresaste un HealthScore invalido.'
         }
 
@@ -75,7 +75,8 @@ export function UpdateRecipe(){
     function handleSubmit(e){
         e.preventDefault()
         
-        if(!errors.healthScore){
+        if(Object.keys(errors).length === 0){
+            if(input.healthScore){parseInt(input.healthScore)}
             dispatch(updateRecipe(id, input))
             history(`/my-recipes`)
         }
@@ -93,7 +94,7 @@ export function UpdateRecipe(){
         <div className="cont-form">
             <div className="create_recipe">
                         <form className="form" onSubmit={handleSubmit}>
-                            <h1>Crea tu propia receta!</h1>
+                            <h1>Actualiza tu propia receta!</h1>
                             
                             <div >
                                 <label>Name of recipe: </label>
@@ -123,7 +124,7 @@ export function UpdateRecipe(){
                             <div>
                                 <label>HealthScore:</label>
                                 <input 
-                                    type='number' 
+                                    type='text' 
                                     name='healthScore'
                                     placeholder= {recipe.healthScore}
                                     value={input.healthScore}

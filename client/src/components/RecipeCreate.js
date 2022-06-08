@@ -24,7 +24,7 @@ export function RecipeCreate(){
             errors.summary='No ingresaste el resumen de la receta!'
         }
 
-        if((input.healthScore < 1) || (input.healthScore >100)){
+        if(((input.healthScore < 1) || (input.healthScore >100)) || isNaN(input.healthScore)){
             errors.healthScore = 'Ingresaste un HealthScore invalido.'
         }
 
@@ -87,6 +87,7 @@ export function RecipeCreate(){
         e.preventDefault()
         
         if(Object.keys(errors).length === 0){
+            if(input.healthScore){parseInt(input.healthScore)}
             dispatch(postRecipe(input))
             setInput({
                 name: '',
@@ -146,7 +147,7 @@ export function RecipeCreate(){
                             <div>
                                 <label>HealthScore:</label>
                                 <input 
-                                    type='number' 
+                                    type='text' 
                                     name='healthScore' 
                                     value={input.healthScore} 
                                     onChange={handleChange}
