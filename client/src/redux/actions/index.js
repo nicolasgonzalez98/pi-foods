@@ -74,6 +74,9 @@ export function searchByName(name){
                 payload:data
             })
         })
+        .catch(err => {
+            alert(err)
+        })
     }
 }
 

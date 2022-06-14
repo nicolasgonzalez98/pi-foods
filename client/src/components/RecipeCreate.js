@@ -86,7 +86,7 @@ export function RecipeCreate(){
     function handleSubmit(e){
         e.preventDefault()
         
-        if(Object.keys(errors).length === 0){
+        if(Object.keys(errors).length === 0 && (input.name!=='')){
             if(input.healthScore){parseInt(input.healthScore)}
             dispatch(postRecipe(input))
             setInput({
@@ -98,6 +98,8 @@ export function RecipeCreate(){
                 diets: []
             })
             history('/home')
+        }else{
+            alert('no se envio')
         }
 
     }

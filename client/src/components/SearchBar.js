@@ -14,7 +14,13 @@ export function SearchBar(){
 
     function handleSubmit(e){
         e.preventDefault()
-        dispatch(searchByName(search))
+        if(!search){
+            alert('No ingresaste un valor valido')
+            
+        }else{
+            dispatch(searchByName(search))
+        }
+        
         setSearch('')
     }
 
