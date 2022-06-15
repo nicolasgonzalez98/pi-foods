@@ -61,6 +61,7 @@ export function postRecipe(payload){
                 type: POST_RECIPE,
                 payload:data
             })
+        .catch('Estamos esperando')
         })
     }
 }
