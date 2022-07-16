@@ -13,15 +13,17 @@ server.use(cors())
 
 server.name = 'API';
 
-const FRONT_URL = process.env.URL_VERCEL || 'http://localhost:3000'
-console.log(FRONT_URL)
+const { URL_VERCEL } = process.env
+
+
+console.log(URL_VERCEL)
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', FRONT_URL); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', URL_VERCEL); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
