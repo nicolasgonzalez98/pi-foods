@@ -60,8 +60,7 @@ export function postRecipe(payload){
             dispatch({
                 type: POST_RECIPE,
                 payload:data
-            })
-        .catch(err => {alert(err)})   
+            })  
         
         })
     }
