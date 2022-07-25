@@ -16,7 +16,7 @@ server.name = 'API';
 const { URL_VERCEL } = process.env
 
 
-console.log(URL_VERCEL)
+
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));

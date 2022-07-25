@@ -55,13 +55,7 @@ export function getRecipeById(id){
 
 export function postRecipe(payload){
     return function(dispatch){
-        return axios({
-            method: "post",
-            url: "/recipe",
-            data: payload,
-            headers: { "X-Requested-With": "XMLHttpRequest" },
-            withCredentials: true,
-        })
+        return axios.post("/recipe", payload)
         .then(data => {
             dispatch({
                 type: POST_RECIPE,
