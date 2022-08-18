@@ -2,7 +2,7 @@
 
 In this application you will be able to see different food recipes, with their information, it has functionalities such as filtering by type of dates, it also has a search engine that brings more recipes from the external API Sponcoolar. You can create your own recipes, and then you can update or delete this recipes.
 
-## Instalación
+## Installation
 To install and run this proyect just type and execute
 
 ```bash
