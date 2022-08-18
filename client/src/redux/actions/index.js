@@ -54,8 +54,8 @@ export function getRecipeById(id){
 }
 
 export function postRecipe(payload){
-    return function(dispatch){
-        return axios.post("/recipe", payload)
+    return async function(dispatch){
+        return await axios.post("/recipe", payload)
         .then(data => {
             dispatch({
                 type: POST_RECIPE,
