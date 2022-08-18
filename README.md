@@ -11,7 +11,7 @@
 
 ### Instalación
 
-```
+js```
 npm install
 ```
 
