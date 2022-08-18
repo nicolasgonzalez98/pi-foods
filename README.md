@@ -16,9 +16,11 @@ npm install
   <li>Your recipes can be modified and deleted</li>
 </ul>
 
-## Demo
+## Deploy
 
-If you want to see the demo of this proyect deployed, you can visit [Demo of the proyect](https://pi-foods-five.vercel.app/)
+If you want to see the deploy of this proyect deployed, you can visit [API Food wep-page](https://pi-foods-five.vercel.app/)
+
+NOTE: Have a little CORS problems when you try to create a new recipe. In localhost work's.
 
 
 ## Comenzando
