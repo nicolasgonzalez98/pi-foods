@@ -1,16 +1,10 @@
-<p align='left'>
-    <img src='https://static.wixstatic.com/media/85087f_0d84cbeaeb824fca8f7ff18d7c9eaafd~mv2.png/v1/fill/w_160,h_30,al_c,q_85,usm_0.66_1.00_0.01/Logo_completo_Color_1PNG.webp'> </img>
-</p>
+# PI-Food
 
-### Individual Project - Henry Food
+In this application you will be able to see different food recipes, with their information, it has functionalities such as filtering by type of dates, it also has a search engine that brings more recipes from the external API Sponcoolar. You can create your own recipes, and then you can update or delete this recipes.
 
-<p align="right">
-  <img height="200" src="./cooking.png" />
-</p>
-
-
-##Instalación
+## Instalación
 To install and run this proyect just type and execute
+
 ```bash
 npm install
 ```
